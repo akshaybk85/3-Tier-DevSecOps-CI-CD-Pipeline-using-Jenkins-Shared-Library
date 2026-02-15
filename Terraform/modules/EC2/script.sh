@@ -199,7 +199,7 @@ sudo apt-get update
 sudo apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 
 # Add user to docker group (log out / in or newgrp to apply)
-sudo usermod -aG docker  ubuntu
+sudo usermod -aG docker $USER
 newgrp docker
 
 
@@ -231,6 +231,17 @@ sleep 5
 curl -O -L "https://github.com/sigstore/cosign/releases/latest/download/cosign-linux-amd64"
 sudo mv cosign-linux-amd64 /usr/local/bin/cosign
 sudo chmod +x /usr/local/bin/cosign
+
+############################################
+# Install SonarQube Scanner (Official Repo)
+############################################
+
+docker run -d --name sonarqube \
+  -p 9000:9000 \
+  -v sonarqube_data:/opt/sonarqube/data \
+  -v sonarqube_logs:/opt/sonarqube/logs \
+  -v sonarqube_extensions:/opt/sonarqube/extensions \
+  sonarqube:26.2.0.119303-community
 
 
 ############################################
