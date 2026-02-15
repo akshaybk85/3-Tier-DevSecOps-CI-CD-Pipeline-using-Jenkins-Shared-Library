@@ -36,3 +36,5 @@ backend.tfvars
 .terraform.lock.hcl
 
 .
+.terraform/
+*.tfstate*
